@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.model.VendorDetails
+
 
 class CategoriesAdapter(
     private val context: Context,
@@ -34,6 +36,13 @@ class CategoriesAdapter(
 
         fun bind(category: VendorDetails.Data.VendorsItem) {
             view.findViewById<TextView>(R.id.categoryName).text = category.vendorCategoryName
+            view.findViewById<RecyclerView>(R.id.recyclerView).addItemDecoration(
+                DividerItemDecoration(
+                    view.findViewById<RecyclerView>(R.id.recyclerView).context,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+
             view.findViewById<RecyclerView>(R.id.recyclerView).adapter =
                 ItemsAdapter(view.context, category.items)
         }

@@ -4,6 +4,7 @@ package com.example.myapplication.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.myapplication.R
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecycler() {
         recyclerView.adapter = CategoriesAdapter(this, categories)
+
     }
 
     private fun initMediator() {
@@ -67,7 +69,6 @@ class MainActivity : AppCompatActivity() {
         call!!.enqueue( object : Callback<VendorDetails>{
             override fun onResponse(call: Call<VendorDetails>, response: Response<VendorDetails>) {
                  for (i in 0 until response.body()!!.data.vendorsItems.size){
-                      for(k in 0 until response.body()!!.data.vendorsItems[i].items.size){}
                       categories.add(
                           VendorDetails.Data.VendorsItem(
                               response.body()!!.data.vendorsItems[i].items,
